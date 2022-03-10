@@ -18,13 +18,17 @@ unzip' lst = uzip lst ([],[])
           uzip ((e,i):ll) (a,b) = uzip ll ((e:a),(i:b))
 
 -- remove an element from a list
+-- TODO: implement using foldr
 remove :: (Eq a) => a -> [a] -> [a]
-remove elem (f:lst)
-    | elem == f = lst
-    | otherwise = remove elem lst
+remove elem lst = 
+    foldr (\x acc -> if elem == x then acc else (x : acc)) [] lst
 
-remove' :: (Eq a) => a -> [a] -> [a]
-remove' = undefined
+-- remove the first occurrence of the given element from a given list.
+remove' :: (Eq a) => (a,b) -> [(a,b)] -> [(a,b)]
+remove' _       [] = []
+remove' a@(e,_) ((f,i):lst)
+    | e == f    = lst
+    | otherwise = (f,i) : (remove' a lst) 
 
 -- Pair every element of the list with its corresponding index.
 enumerate :: [a] -> [(a,Int)]
