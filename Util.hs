@@ -1,5 +1,5 @@
 module Util
-( flip
+( flip'
 , unzip'
 , remove
 , remove'
@@ -8,8 +8,8 @@ module Util
 ) where
 
 -- flip the items of the given tuple.
-flip :: (a,b) -> (b,a)
-flip (a,b) = (b,a)
+flip' :: (a,b) -> (b,a)
+flip' (a,b) = (b,a)
 
 -- unzip a zipped list
 unzip' :: [(a,b)] -> ([a],[b])
