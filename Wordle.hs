@@ -26,9 +26,9 @@ data Check = MisplacedOrBad (Char,Int) | Good deriving (Show, Eq)
 
 check :: Wordle -> Wordle -> [Check] -> [Check]
 check []     _          acc = acc
-check (g:gs) s@(f:sltn) acc
-    | g == f          = check gs sltn          (acc ++ [Good])
-    | otherwise       = check gs s             (acc ++ [MisplacedOrBad g])
+check (g:gs) (s:sltn) acc
+    | g == s          = check gs sltn          (acc ++ [Good])
+    | otherwise       = check gs sltn          (acc ++ [MisplacedOrBad g])
 
 correct' :: [Check] -> Wordle -> [Correctness] -> [Correctness]
 correct' []      _    acc = acc
