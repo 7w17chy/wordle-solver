@@ -41,4 +41,4 @@ enumerate lst =
 -- ignoring the index.
 elemOf :: (Eq a) => (a,Int) -> [(a,Int)] -> Bool
 (t,_) `elemOf` lst = 
-    foldr (\(c,_) _ -> if t == c then True else False) False lst
+    foldr (\(c,_) a -> if t == c then True else a) False lst
